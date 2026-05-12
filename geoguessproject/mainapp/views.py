@@ -1,3 +1,9 @@
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'mainapp/index.html')
+
+# views pulled from exam template
 questions = [
     {"country": "France", "capital": "Paris"},
     {"country": "Canada", "capital": "Montreal"},
