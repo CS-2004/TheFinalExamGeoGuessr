@@ -10,31 +10,36 @@
 </head>
 
 <body id="app">
-  <form class="container" action="" method="">
+<form class="container" method="POST">
+  {% csrf_token %}
     
     <div class="horizontal-container">
-      <h3>
-        Total Score:
-        <span id="score">
-           0
-        </span>
-      </h3>
+    <h3>
+      Total Score:
+      <span id="score">{{ score }}</span>
+    </h3>
 
     </div>
 
-    <h1 id="countryName">
-        <img src="" alt="" width="80px" >
-        <h1> Country Name </h1>
+    <h1 id="countryName"> <img src="{% static flag %}" alt="{{ country }} flag"width="80" >
+      <h1>{{ country }}</h1>
     </h1>
-    <div class="answer-container">
-      <input type="text" name="answer" id="userInput" placeholder="Enter the capital" autofocus autocomplete="off">
-      <input type="hidden" name="question_index" value="">
-      <input type="hidden" name="total_score" value="">
-    </div>
-    <button type="submit">SUBMIT
-        <!-- apply one span or the other -->
-          <span class="checkmark">✔</span>
-          <span class="cross" id="error">✖</span>
+  <div class="answer-container">
+    <input
+      type="text"
+      name="answer"
+      id="userInput"
+      placeholder="Enter the capital"
+      autofocus
+      autocomplete="off" >
+    <input
+      type="hidden"
+      name="capital"
+      value="{{ capital }}" >
+  </div>
+    <button type="submit"> SUBMIT {% if buzzer == "correct" %} <span class="checkmark">✔</span>{% elif buzzer == "wrong" %}
+        <span class="cross">✖</span>
+      {% endif %}
     </button>
   </form>
   
